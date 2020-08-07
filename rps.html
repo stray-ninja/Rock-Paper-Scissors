@@ -1,0 +1,81 @@
+<html>
+    <body>
+        
+        <script>
+            //global variables for game score
+            let playerScore=0;
+            let computerScore=0;
+
+            //random computer pick of rock, paper or scissors
+            const computerPlay=()=>{
+                const selectionArray=["rock", "paper", "scissors"];
+                return selectionArray[Math.floor(Math.random() * selectionArray.length)];
+             }
+                
+            //one round of the game
+            const playRound=(playerSelection, computerSelection)=>{
+                //makes playerSelection case insensitive (user can enter ROCK, rock, rOcK...)
+                const  playerSelection = playerSelection.toLowerCase();
+                computerSelection = computerPlay();
+                //conditions for winner/loser, adds score points, or not
+                if (playerSelection == 'rock' && computerSelection == 'scissors') {
+                    playerScore+=1;
+                    return 'You won! Rock beats scissors!'
+                } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+                    computerScore+=1;;
+                    return 'You lose! Paper beats rock!'
+                } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+                    computerScore+=1;
+                    return 'You lose! Scissors beats paper!'
+                } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+                    playerScore+=1;
+                    return 'You win! Paper beats rock!'
+                } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+                    computerScore+=1;
+                    return 'You lose! Rock beats scissors!'
+                } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+                    playerScore+=1;
+                    return 'You win! Scissors beats paper!'
+                } else if (playerSelection == computerSelection) {
+                    return 'It\'s a tie! Try again!'
+                }
+            }
+                
+                //starts the game (5 rounds)
+                function game() {
+                    function round1() { 
+                        console.log(playRound(prompt ('First round: To play, enter rock, paper or scissors!'))); 
+                    }
+                    round1();
+                    console.log('Player: '+playerScore+'  Computer: '+computerScore);
+
+                    function round2() {
+                        console.log(playRound(prompt ('Second round: To play, enter rock, paper or scissors!')));
+                    }
+                    round2();
+                    console.log('Player: '+playerScore+'  Computer: '+computerScore);
+
+                    function round3() {
+                        console.log(playRound(prompt ('Third round: To play, enter rock, paper or scissors!')));
+                    }
+                    round3();
+                    console.log('Player: '+playerScore+'  Computer: '+computerScore);
+
+                    function round4() {
+                        console.log(playRound(prompt ('Fourth round: To play, enter rock, paper or scissors!')));
+                    }
+                    round4();
+                    console.log('Player: '+playerScore+'  Computer: '+computerScore);
+
+                    function round5() {
+                        console.log(playRound(prompt ('Fifth round: To play, enter rock, paper or scissors!')));
+                    }
+                    round5();
+                    console.log('Player: '+playerScore+'  Computer: '+computerScore);
+                }
+                //start game
+                game()
+
+         </script>
+    </body>
+</html>

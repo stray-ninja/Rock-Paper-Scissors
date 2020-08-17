@@ -1,6 +1,14 @@
 <html>
     <body>
-        
+        <div class="btnContainer">
+            <button id="btnRock" class="btn">Rock</button>
+            <button id="btnPaper" class="btn">Paper</button>
+            <button id="btnScissors" class="btn">Scissors</button>
+        </div>
+        <br>
+        <div id="resultContainer"></div>
+
+
         <script>
             //global variables for game score
             let playerScore=0;
@@ -15,34 +23,45 @@
             //one round of the game
             const playRound=(playerSelection, computerSelection)=>{
                 //makes playerSelection case insensitive (user can enter ROCK, rock, rOcK...)
-                const  playerSelection = playerSelection.toLowerCase();
+                playerSelection = playerSelection.toLowerCase();
                 computerSelection = computerPlay();
+                if (playerScore === 5) {
+                    return 'You are the winner!'+' Player: '+playerScore+' Computer: '+computerScore;
+                } else if (computerScore === 5) {
+                    return 'You lost!'+' Computer: '+computerScore+' Player: '+playerScore;
+                };
                 //conditions for winner/loser, adds score points, or not
                 if (playerSelection == 'rock' && computerSelection == 'scissors') {
                     playerScore+=1;
-                    return 'You won! Rock beats scissors!'
+                    return 'You won! Rock beats scissors!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 } else if (playerSelection == 'rock' && computerSelection == 'paper') {
                     computerScore+=1;;
-                    return 'You lose! Paper beats rock!'
+                    return 'You lose! Paper beats rock!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
                     computerScore+=1;
-                    return 'You lose! Scissors beats paper!'
+                    return 'You lose! Scissors beats paper!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 } else if (playerSelection == 'paper' && computerSelection == 'rock') {
                     playerScore+=1;
-                    return 'You win! Paper beats rock!'
+                    return 'You win! Paper beats rock!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
                     computerScore+=1;
-                    return 'You lose! Rock beats scissors!'
+                    return 'You lose! Rock beats scissors!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
                     playerScore+=1;
-                    return 'You win! Scissors beats paper!'
+                    return 'You win! Scissors beats paper!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 } else if (playerSelection == computerSelection) {
-                    return 'It\'s a tie! Try again!'
+                    return 'It\'s a tie! Try again!'+
+                    ' Player: '+playerScore+'  Computer: '+computerScore;
                 }
-            }
-                
+            };
                 //starts the game (5 rounds)
-                function game() {
+               /* function game() {
                     function round1() { 
                         console.log(playRound(prompt ('First round: To play, enter rock, paper or scissors!'))); 
                     }
@@ -74,7 +93,32 @@
                     console.log('Player: '+playerScore+'  Computer: '+computerScore);
                 }
                 //start game
-                game()
+                game()*/
+
+
+                // Montag 17.08.2020
+                const btnRock = document.querySelector('#btnRock');
+                btnRock.addEventListener('click', () => {
+                    result.textContent= (playRound('rock'));
+                });
+
+                const btnPaper = document.querySelector('#btnPaper');
+                btnPaper.addEventListener('click', () => {
+                    result.textContent = (playRound('paper'));
+                });
+
+                const btnScissors = document.querySelector('#btnScissors');
+                btnScissors.addEventListener('click', () => {
+                    result.textContent = (playRound('scissors'));
+                });
+
+
+                const resultContainer = document.querySelector('#resultContainer');
+                
+                const result = document.createElement('div');
+                result.classList.add('result');
+
+                resultContainer.appendChild(result);
 
          </script>
     </body>
